@@ -26,6 +26,7 @@ function VideoHomepage({ videos }: Props) {
     <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  ">
       {allVideos?.map((thumbnail, idx) => (
         <Link
+          key={idx}
           href={`/video/${videoId}`}
           className="p-10 mx-auto relative cursor-pointer"
         >
