@@ -1,11 +1,17 @@
 import VideoListComponent from "@/components/VideoListComponent";
 import { Root } from "@/types";
 
+type Props = {
+  params: {
+    category: Category;
+  };
+};
+
 export const revalidate = 120;
 
-async function Home() {
-  const category = "new";
+async function CategoryPage({ params: { category } }: Props) {
   const videos: Root = await getData(category);
+
   return (
     <main>
       <VideoListComponent videos={videos} />
@@ -13,9 +19,9 @@ async function Home() {
   );
 }
 
-export default Home;
+export default CategoryPage;
 
-async function getData(category: string) {
+async function getData(category: Category) {
   const res = await fetch(
     `https://youtube-v31.p.rapidapi.com/search?q=${category}&part=snippet%2Cid&regionCode=US&maxResults=50&order=date`,
     {
